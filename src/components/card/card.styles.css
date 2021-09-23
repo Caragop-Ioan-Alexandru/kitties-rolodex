@@ -12,6 +12,15 @@
   transition: transform 0.25s ease-out;
 }
 
+h3 {
+  padding: 0;
+  margin: 0;
+}
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
 .card-container:hover {
   transform: scale(1.05);
 }
