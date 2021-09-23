@@ -27,8 +27,11 @@ class App extends Component {
 
   render () {
     const { monsters, searchField } = this.state; // destructuring state object for variables
-    const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()) // lowercase monster names and input and check if input is inclused in any monster name
-    );
+    const filteredMonsters = monsters.filter(monster => {
+      return Object.keys(monster).some(key => {
+        return monster[key].toString().toLowerCase().includes(searchField.toLowerCase());
+      })
+    }); // lowercase monster names and input and check if input is inclused in any monster name
 
     return (
       <div className="App">
@@ -37,7 +40,8 @@ class App extends Component {
           placeholder='Kitties'
           handleChange={this.handleChange}
           search={searchField} />
-        <CardList monsters={filteredMonsters} /> 
+        <CardList monsters={filteredMonsters} />
+        {filteredMonsters.length === 0 && <h2>No records found! Please try again and check spelling</h2>}
       </div>
     );
   }
